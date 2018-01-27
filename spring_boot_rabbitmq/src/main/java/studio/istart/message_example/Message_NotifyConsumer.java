@@ -1,4 +1,4 @@
-package studio.istart.construct;
+package studio.istart.message_example;
 
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.core.Message;
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
  * @author dongyan
  */
 @Component
-public class Construct_NotifyConsumer {
+public class Message_NotifyConsumer {
 
-    public static final String NOTIFY_EXCHANGE = "Construct-notify-exchange";
+    public static final String NOTIFY_EXCHANGE = "Construct-notify-exchange_example";
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = Construct_NotifyType.EMAIL, durable = "true"),
+            value = @Queue(value = Message_NotifyType.EMAIL, durable = "true"),
             exchange = @Exchange(type = ExchangeTypes.TOPIC, value = NOTIFY_EXCHANGE, ignoreDeclarationExceptions = "true"),
-            key = Construct_NotifyType.TOPIC_EMAIL)
+            key = Message_NotifyType.TOPIC_EMAIL)
     )
     public void sendMail(Message message) {
 
@@ -27,18 +27,18 @@ public class Construct_NotifyConsumer {
     }
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = Construct_NotifyType.SMS, durable = "true"),
+            value = @Queue(value = Message_NotifyType.SMS, durable = "true"),
             exchange = @Exchange(type = ExchangeTypes.TOPIC, value = NOTIFY_EXCHANGE, ignoreDeclarationExceptions = "true"),
-            key = Construct_NotifyType.TOPIC_SMS)
+            key = Message_NotifyType.TOPIC_SMS)
     )
     public void sendSms(Message message) {
         System.out.println("[SMS]receive :" + message);
     }
 
     @RabbitListener(bindings = @QueueBinding(
-            value = @Queue(value = Construct_NotifyType.TOPIC_SITE_MESSAGE, durable = "true"),
+            value = @Queue(value = Message_NotifyType.TOPIC_SITE_MESSAGE, durable = "true"),
             exchange = @Exchange(type = ExchangeTypes.TOPIC, value = NOTIFY_EXCHANGE, ignoreDeclarationExceptions = "true"),
-            key = Construct_NotifyType.TOPIC_SITE_MESSAGE)
+            key = Message_NotifyType.TOPIC_SITE_MESSAGE)
     )
     public void sendSiteMessage(Message message) {
         System.out.println("[Site Message]receive :" + message);

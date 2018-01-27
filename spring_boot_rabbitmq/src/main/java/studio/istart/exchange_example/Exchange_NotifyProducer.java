@@ -1,4 +1,4 @@
-package studio.istart.exchange;
+package studio.istart.exchange_example;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package studio.istart.basic;
+package studio.istart.basic_example;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -25,7 +25,7 @@ public class Basic_Config {
 
     @Bean
     TopicExchange exchange() {
-        return new TopicExchange("spring-boot-exchange");
+        return new TopicExchange("spring-boot-exchange_example");
     }
 
     /**

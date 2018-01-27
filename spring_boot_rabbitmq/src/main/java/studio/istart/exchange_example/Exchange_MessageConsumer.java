@@ -1,4 +1,4 @@
-package studio.istart.exchange;
+package studio.istart.exchange_example;
 
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Exchange_MessageConsumer {
 
-    public static final String MESSAGE_EXCHANGE = "exchange-message-exchange";
+    public static final String MESSAGE_EXCHANGE = "exchange_example-message-exchange_example";
 
     @Autowired
     private Exchange_NotifyProducer exchangeNotifyProducer;
@@ -25,7 +25,7 @@ public class Exchange_MessageConsumer {
             key = Exchange_MessageType.USER)
     )
     public void receiveUserMessage(String message) {
-        System.out.println("Construct_MessageType.USER:" + message);
+        System.out.println("Message_MessageType.USER:" + message);
         exchangeNotifyProducer.produce(Exchange_MessageType.USER, message);
     }
 
@@ -36,7 +36,7 @@ public class Exchange_MessageConsumer {
     )
     public void receiveOrderMessage(String message) {
 
-        System.out.println("Construct_MessageType.ORDER:" + message);
+        System.out.println("Message_MessageType.ORDER:" + message);
         exchangeNotifyProducer.produce(Exchange_MessageType.ORDER, message);
 
     }
@@ -47,7 +47,7 @@ public class Exchange_MessageConsumer {
             key = Exchange_MessageType.PAYMENT)
     )
     public void receivePaymentMessage(String message) {
-        System.out.println("Construct_MessageType.PAYMENT:" + message);
+        System.out.println("Message_MessageType.PAYMENT:" + message);
         exchangeNotifyProducer.produce(Exchange_MessageType.PAYMENT, message);
     }
 }

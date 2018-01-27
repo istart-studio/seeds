@@ -21,7 +21,6 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 .gradle/
-.idea/gradle.xml
-.idea/inspectionProfiles/
-.idea/workspace.xml
-spring_boot_rabbitmq/build/tmp/
+.idea/
+spring_boot_rabbitmq/.idea/
+spring_boot_rabbitmq/build/

@@ -1,9 +1,9 @@
-package studio.istart.construct;
+package studio.istart.message_example;
 
 /**
  * @author dongyan
  */
-public class Construct_NotifyType {
+public class Message_NotifyType {
     /**
      * 短信
      */

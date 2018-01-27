@@ -1,4 +1,4 @@
-package studio.istart.construct;
+package studio.istart.message_example;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
  * @author dongyan
  */
 @Component
-public class Construct_NotifyProducer {
+public class Message_NotifyProducer {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    public void produce(Construct_MessageSubscriber subscriber) {
-        rabbitTemplate.convertAndSend(Construct_NotifyConsumer.NOTIFY_EXCHANGE,
+    public void produce(Message_MessageSubscriber subscriber) {
+        rabbitTemplate.convertAndSend(Message_NotifyConsumer.NOTIFY_EXCHANGE,
                 subscriber.getTopicRouteKey(), subscriber.getMessage());
     }
 

@@ -1,4 +1,4 @@
-package studio.istart.construct;
+package studio.istart.message_example;
 
 import com.google.gson.Gson;
 import org.springframework.amqp.core.Message;
@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * @author dongyan
  */
-public class Construct_MessageSubscriber {
+public class Message_MessageSubscriber {
     /**
      * 消息类型
      */
@@ -36,7 +36,7 @@ public class Construct_MessageSubscriber {
      */
     public Map<String, List<String>> notifyConfig;
 
-    public Construct_MessageSubscriber(String userName, Map<String, List<String>> notifyConfig) {
+    public Message_MessageSubscriber(String userName, Map<String, List<String>> notifyConfig) {
         this.userName = userName;
         this.notifyConfig = notifyConfig;
     }

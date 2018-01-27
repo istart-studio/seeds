@@ -1,11 +1,7 @@
-package studio.istart.exchange;
+package studio.istart.exchange_example;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author dongyan

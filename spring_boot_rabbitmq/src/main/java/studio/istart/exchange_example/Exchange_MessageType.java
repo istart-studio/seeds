@@ -1,4 +1,4 @@
-package studio.istart.exchange;
+package studio.istart.exchange_example;
 
 /**
  * @author dongyan

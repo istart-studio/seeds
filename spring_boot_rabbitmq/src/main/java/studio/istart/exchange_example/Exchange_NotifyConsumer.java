@@ -1,4 +1,4 @@
-package studio.istart.exchange;
+package studio.istart.exchange_example;
 
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Exchange_NotifyConsumer {
 
-    public static final String NOTIFY_EXCHANGE = "exchange-notify-exchange";
+    public static final String NOTIFY_EXCHANGE = "exchange_example-notify-exchange_example";
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = Exchange_NotifyType.EMAIL, durable = "true"),

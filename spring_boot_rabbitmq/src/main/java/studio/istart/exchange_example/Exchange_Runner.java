@@ -1,7 +1,6 @@
-package studio.istart.exchange;
+package studio.istart.exchange_example;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 /**
  * @author dongyan

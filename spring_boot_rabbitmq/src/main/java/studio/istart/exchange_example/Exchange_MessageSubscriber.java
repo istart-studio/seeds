@@ -1,7 +1,4 @@
-package studio.istart.exchange;
-
-import java.util.HashMap;
-import java.util.Map;
+package studio.istart.exchange_example;
 
 /**
  * @author dongyan

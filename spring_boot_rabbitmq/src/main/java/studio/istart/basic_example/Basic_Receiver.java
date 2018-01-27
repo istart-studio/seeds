@@ -1,4 +1,4 @@
-package studio.istart.basic;
+package studio.istart.basic_example;
 
 
 import java.util.concurrent.CountDownLatch;
