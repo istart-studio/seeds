@@ -1,2 +1,5 @@
 include 'spring_boot_rabbitmq'
+include 'spring_cloud_server'
+include 'spring_cloud_client'
+include 'spring_boot_soap_client'
 
