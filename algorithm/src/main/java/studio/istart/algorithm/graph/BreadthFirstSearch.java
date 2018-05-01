@@ -31,6 +31,7 @@ public class BreadthFirstSearch {
     /**
      * 搜索第一广度
      * 不能用迭代?第一度，第二度
+     * todo:具体哪些条线路是最短路径
      */
     public boolean core(GraphNode start, GraphNode end) {
         searchQueue.addAll(start.getForwards());

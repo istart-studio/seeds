@@ -4,4 +4,5 @@ include 'spring_cloud_client'
 include 'spring_boot_soap_client'
 include 'algorithm'
 include 'web_service'
+include 'spring_boot_activiti'
 
