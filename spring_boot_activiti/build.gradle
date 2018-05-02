@@ -1,0 +1,37 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'springboot-activiti'
+    version = '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+    // https://mvnrepository.com/artifact/org.activiti/activiti-spring-boot-starter-basic
+    compile group: 'org.activiti', name: 'activiti-spring-boot-starter-basic', version: '6.0.0'
+    compile group: 'org.activiti', name: 'activiti-spring-boot-starter-rest-api', version: '6.0.0'
+    compile group: 'org.activiti', name: 'activiti-spring-boot-starter-actuator', version: '6.0.0'
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    compile group: 'com.h2database', name: 'h2', version: '1.4.197'
+
+    testCompile("junit:junit")
+}

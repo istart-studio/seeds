@@ -1,2 +1,2 @@
-IDEA PLUGIN
-actiBMP
+## Setup IDEA Plugin
+Jboss jBPMN(default recommended)

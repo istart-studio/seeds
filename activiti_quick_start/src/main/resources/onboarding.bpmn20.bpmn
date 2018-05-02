@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/processdef" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1525243793262" name="" targetNamespace="http://www.activiti.org/processdef" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <process id="onboarding" isClosed="false" isExecutable="true" name="Onboarding" processType="None">
+    <startEvent activiti:initiator="initiator" id="startOnboarding" name="Start"/>
+    <userTask activiti:assignee="${initiator}" activiti:candidateGroups="managers" activiti:exclusive="true" id="enterOnboardingData" name="Enter Data">
+      <extensionElements>
+        <activiti:formProperty id="fullName" name="Full Name" type="string"/>
+        <activiti:formProperty id="yearsOfExperience" name="Years of Experience" required="true" type="long"/>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sid-1337EA98-7364-4198-B5D9-30F5341D6918" sourceRef="startOnboarding" targetRef="enterOnboardingData"/>
+    <exclusiveGateway default="automatedIntroPath" gatewayDirection="Unspecified" id="decision" name="Years of Experience"/>
+    <sequenceFlow id="sid-42BE5661-C3D5-4DE6-96F5-73D34822727A" sourceRef="enterOnboardingData" targetRef="decision"/>
+    <userTask activiti:assignee="${initiator}" activiti:candidateGroups="managers" activiti:exclusive="true" id="personalizedIntro" name="Personalized Introduction and Data Entry">
+      <extensionElements>
+        <activiti:formProperty datePattern="MM-dd-yyyy hh:mm" id="personalWelcomeTime" name="Personal Welcome Time" type="date"/>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endOnboarding" name="End"/>
+    <sequenceFlow id="sid-37A73ACA-2E23-400B-96F3-71F77738DAFA" sourceRef="automatedIntro" targetRef="endOnboarding"/>
+    <serviceTask activiti:class="studio.istart.activiti.example.AutomatedDataDelegate" activiti:exclusive="true" id="automatedIntro" name="Generic and Automated Data Entry"/>
+    <sequenceFlow id="automatedIntroPath" sourceRef="decision" targetRef="automatedIntro"/>
+    <sequenceFlow id="personalizedIntroPath" name="&gt;3" sourceRef="decision" targetRef="personalizedIntro">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${yearsOfExperience > 3}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-BA6F061B-47B6-428B-8CE6-739244B14BD6" sourceRef="personalizedIntro" targetRef="endOnboarding"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#FFFFFF;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="onboarding">
+      <bpmndi:BPMNShape bpmnElement="startOnboarding" id="Shape-startOnboarding">
+        <omgdc:Bounds height="32.0" width="32.0" x="90.0" y="135.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="enterOnboardingData" id="Shape-enterOnboardingData">
+        <omgdc:Bounds height="80.0" width="100.0" x="240.0" y="120.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="80.0" width="100.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="decision" id="Shape-decision" isMarkerVisible="false">
+        <omgdc:Bounds height="32.0" width="32.0" x="385.0" y="140.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="personalizedIntro" id="Shape-personalizedIntro">
+        <omgdc:Bounds height="80.0" width="100.0" x="519.0" y="15.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="80.0" width="100.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endOnboarding" id="Shape-endOnboarding">
+        <omgdc:Bounds height="32.0" width="32.0" x="725.0" y="165.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="automatedIntro" id="Shape-automatedIntro">
+        <omgdc:Bounds height="80.0" width="100.0" x="520.0" y="255.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="80.0" width="100.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-37A73ACA-2E23-400B-96F3-71F77738DAFA" id="BPMNEdge_sid-37A73ACA-2E23-400B-96F3-71F77738DAFA" sourceElement="automatedIntro" targetElement="endOnboarding">
+        <omgdi:waypoint x="570.0" y="255.0"/>
+        <omgdi:waypoint x="570.0" y="179.0"/>
+        <omgdi:waypoint x="725.1254921336125" y="179.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="automatedIntroPath" id="BPMNEdge_automatedIntroPath" sourceElement="decision" targetElement="automatedIntro">
+        <omgdi:waypoint x="405.0" y="168.0"/>
+        <omgdi:waypoint x="405.0" y="295.0"/>
+        <omgdi:waypoint x="520.0" y="295.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="personalizedIntroPath" id="BPMNEdge_personalizedIntroPath" sourceElement="decision" targetElement="personalizedIntro">
+        <omgdi:waypoint x="405.0" y="144.0"/>
+        <omgdi:waypoint x="405.0" y="55.0"/>
+        <omgdi:waypoint x="519.0" y="55.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-1337EA98-7364-4198-B5D9-30F5341D6918" id="BPMNEdge_sid-1337EA98-7364-4198-B5D9-30F5341D6918" sourceElement="startOnboarding" targetElement="enterOnboardingData">
+        <omgdi:waypoint x="122.0" y="151.0"/>
+        <omgdi:waypoint x="240.0" y="160.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-42BE5661-C3D5-4DE6-96F5-73D34822727A" id="BPMNEdge_sid-42BE5661-C3D5-4DE6-96F5-73D34822727A" sourceElement="enterOnboardingData" targetElement="decision">
+        <omgdi:waypoint x="340.0" y="160.0"/>
+        <omgdi:waypoint x="385.0" y="156.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-BA6F061B-47B6-428B-8CE6-739244B14BD6" id="BPMNEdge_sid-BA6F061B-47B6-428B-8CE6-739244B14BD6" sourceElement="personalizedIntro" targetElement="endOnboarding">
+        <omgdi:waypoint x="619.0" y="55.0"/>
+        <omgdi:waypoint x="739.0" y="55.0"/>
+        <omgdi:waypoint x="739.0" y="165.12549213361245"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
