@@ -140,7 +140,7 @@ public class Expression {
          */
         private boolean getStackTop(OperatorSymbol operatorSymbol, OperatorSymbol stackSymbol) {
             return (operatorSymbol.associativity == AssociativityEnum.LEFT && operatorSymbol.priority <= stackSymbol.priority)
-                    || (operatorSymbol.associativity == AssociativityEnum.RIGHT && operatorSymbol.priority < stackSymbol.priority);
+                || (operatorSymbol.associativity == AssociativityEnum.RIGHT && operatorSymbol.priority < stackSymbol.priority);
         }
 
         @Override
@@ -283,6 +283,53 @@ public class Expression {
 
         public BinaryNode<Character> getExpressionTree() {
             return expressionTree;
+        }
+
+        /**
+         * 遍历：左根右(L、D、R)
+         */
+        public enum TraversalEnum {
+
+            /**
+             * 先(根)序
+             */
+            DLR,
+            /**
+             * 中序遍历
+             */
+            LDR,
+            /**
+             * 后(根)序
+             */
+            LRD,
+        }
+
+        /**
+         * 遍历
+         *
+         * @return
+         */
+        public String traversal(TraversalEnum traversalEnum) {
+            StringBuilder stringBuilder = new StringBuilder();
+            traversal(expressionTree, stringBuilder, traversalEnum);
+            return stringBuilder.toString();
+        }
+
+        private void traversal(BinaryNode<Character> binaryNode, final StringBuilder stringBuilder, TraversalEnum traversalEnum) {
+            if (binaryNode == null) {
+                return;
+            }
+            if (traversalEnum == TraversalEnum.DLR) {
+                stringBuilder.append(binaryNode.getKey());
+            }
+            traversal(binaryNode.getLeft(), stringBuilder, traversalEnum);
+            if (traversalEnum == TraversalEnum.LDR) {
+                stringBuilder.append(binaryNode.getKey());
+            }
+            traversal(binaryNode.getRight(), stringBuilder, traversalEnum);
+            if (traversalEnum == TraversalEnum.LRD) {
+                stringBuilder.append(binaryNode.getKey());
+            }
         }
     }
 

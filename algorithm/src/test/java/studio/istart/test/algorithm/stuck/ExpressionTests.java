@@ -15,14 +15,9 @@ public class ExpressionTests {
     @Test
     public void toRPN() {
         String RPN = Expression.builder("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3")
-                .buildReversePolishNotationExpression()
-                .toString();
+            .buildReversePolishNotationExpression()
+            .toString();
         Assert.assertEquals("3 4 2 * 1 5 - 2 3 ^ ^ / +".replace(" ", ""), RPN);
-
-//        RPN = Expression.builder("(a+b)*c*(d+e)")
-//                .buildReversePolishNotationExpression()
-//                .toString();
-//        Assert.assertEquals("ab+cde+**".replace(" ", ""), RPN);
     }
 
     @Test
@@ -30,5 +25,13 @@ public class ExpressionTests {
         Expression.ExpressionTree expressionTree = new Expression.ExpressionTree("ab+cde+**");
         BinaryNode<Character> binaryNode = expressionTree.getExpressionTree();
         System.out.println(binaryNode);
+    }
+
+    @Test
+    public void expressionTreeTraversal() {
+        Expression.ExpressionTree expressionTree = new Expression.ExpressionTree("ab+cde+**");
+        System.out.println(expressionTree.traversal(Expression.ExpressionTree.TraversalEnum.DLR));
+        System.out.println(expressionTree.traversal(Expression.ExpressionTree.TraversalEnum.LDR));
+        System.out.println(expressionTree.traversal(Expression.ExpressionTree.TraversalEnum.LRD));
     }
 }
