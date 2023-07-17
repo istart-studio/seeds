@@ -1,5 +1,7 @@
 package studio.istart.algorithm.tree;
 
+import lombok.ToString;
+
 /**
  * 二叉树
  *
@@ -7,6 +9,7 @@ package studio.istart.algorithm.tree;
  * @version 1.0.0
  * @since 1.8
  */
+@ToString
 public class BinaryNode<T> {
     private T key;
     private BinaryNode<T> left;
